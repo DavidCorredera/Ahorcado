@@ -26,15 +26,9 @@ public class Main {
             seleccion = sc.nextInt();
 
             switch (seleccion) {
-                case 1:
-                    dificultad = "F";
-                    break;
-                case 2:
-                    dificultad = "M";
-                    break;
-                case 3:
-                    dificultad = "D";
-                    break;
+                case 1 -> dificultad = "F";
+                case 2 -> dificultad = "M";
+                case 3 -> dificultad = "D";
             }
         } else {
             dificultad = getRandomDiff();
@@ -49,14 +43,11 @@ public class Main {
     }
 
     private static String getCompleteDiff(String diff) {
-        switch (diff) {
-            case "F":
-                return "Fácil";
-            case "M":
-                return "Medio";
-            case "D":
-                return "Difícil";
-        }
-        return diff;
+        return switch (diff) {
+            case "F" -> "Fácil";
+            case "M" -> "Medio";
+            case "D" -> "Difícil";
+            default -> diff;
+        };
     }
 }
