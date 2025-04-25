@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class Main {
 
     static String palabra;
-    static String dificultad;
+    static Character dificultad;
     static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -26,9 +26,9 @@ public class Main {
             seleccion = sc.nextInt();
 
             switch (seleccion) {
-                case 1 -> dificultad = "F";
-                case 2 -> dificultad = "M";
-                case 3 -> dificultad = "D";
+                case 1 -> dificultad = 'F';
+                case 2 -> dificultad = 'M';
+                case 3 -> dificultad = 'D';
             }
         } else {
             dificultad = getRandomDiff();
@@ -37,17 +37,17 @@ public class Main {
         System.out.println("Dificultad seleccionada: " + getCompleteDiff(dificultad));
     }
 
-    private static String getRandomDiff() {
-        String[] dificultadArray = {"F", "M", "D"};
+    private static Character getRandomDiff() {
+        Character[] dificultadArray = {'F', 'M', 'D'};
         return dificultadArray[(new Random()).nextInt(dificultadArray.length)]; // devolver un elemento aleatorio del array
     }
 
-    private static String getCompleteDiff(String diff) {
+    private static String getCompleteDiff(Character diff) {
         return switch (diff) {
-            case "F" -> "Fácil";
-            case "M" -> "Medio";
-            case "D" -> "Difícil";
-            default -> diff;
+            case 'F' -> "Fácil";
+            case 'M' -> "Medio";
+            case 'D' -> "Difícil";
+            default -> diff + "";
         };
     }
 }
