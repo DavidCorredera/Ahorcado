@@ -9,8 +9,7 @@ public class Main {
     static Character dificultad;
     static Scanner sc = new Scanner(System.in);
     static int intentos;
-    static boolean seguir = true,valido;
-    static char letra = ' ';
+    static boolean seguir = true;
     static String[] ahorcadoDibujo = {
             """
 |---------
@@ -92,8 +91,6 @@ public class Main {
 
         System.out.println("Dificultad seleccionada: " + getCompleteDiff(dificultad));
         palabra = getRandomWord();
-        //Podemos quitar aqui los acentos y jugar con esa palabra para el match de letras y asi que se visualice con tildes
-        //pero se compare sin ellas
         System.out.println("Palabra seleccionada:");
         for (int i = 0; i < palabra.length(); i++) {
             System.out.print("_");
@@ -108,25 +105,8 @@ public class Main {
         while (seguir) {
             System.out.println("\nPalabra: " + mostrarPalabra(palabra, letrasUsadas));
             System.out.println("Letras usadas: " + letrasUsadas);
-
-            do{
-                valido=true;
-                System.out.print("Introduce una letra: ");
-                letra = sc.next().toLowerCase().charAt(0);
-                switch (letra){
-                    case 'á'-> letra = 'a';
-                    case 'é'-> letra = 'e';
-                    case 'í'-> letra = 'i';
-                    case 'ó'-> letra = 'o';
-                    case 'ú'-> letra = 'u';
-
-                }
-
-                if (letra<'a' || letra>'z'){
-                    System.out.println("Introduce una letra valida");
-                    valido = false;
-                }
-            }while(!valido);
+            System.out.print("Introduce una letra: ");
+            char letra = sc.next().toLowerCase().charAt(0);
 
             if (letrasUsadas.contains(letra)) {
                 System.out.println("Ya usaste esa letra.");
@@ -141,7 +121,7 @@ public class Main {
             } else {
                 System.out.println("¡Letra correcta!");
             }
-            limpiarPantalla();
+
             System.out.println("\n" + ahorcadoDibujo[intentos]);
 
             if (mostrarPalabra(palabra, letrasUsadas).equalsIgnoreCase(palabra)) {
@@ -201,9 +181,5 @@ public class Main {
         return resultado;
     }
 
-    private static void limpiarPantalla(){
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
-    }
 
 }
