@@ -10,6 +10,8 @@ public class Main {
     static Scanner sc = new Scanner(System.in);
     static int intentos;
     static boolean seguir = true,valido;
+    static boolean inputValido= false;
+    static int seleccion = 0;
     static char letra = ' ';
     static String[] ahorcadoDibujo = {
             """
@@ -64,13 +66,21 @@ public class Main {
     };
 
     public static void main(String[] args) {
-        System.out.println("Bienvenido al ahorcado, selecciona si quieres seleccionar dificultad o una dificultad aleatoria:");
-        System.out.println();
-        System.out.println("1. Seleccionar dificultad.");
-        System.out.println("2. Dificultad aleatoria.");
-        System.out.println();
-
-        int seleccion = sc.nextInt();
+        while (!inputValido) {
+            System.out.println("Bienvenido al ahorcado, selecciona si quieres seleccionar dificultad o una dificultad aleatoria:");
+            System.out.println();
+            System.out.println("1. Seleccionar dificultad.");
+            System.out.println("2. Dificultad aleatoria.");
+            System.out.println();
+            if(sc.hasNextInt()) {
+                seleccion = sc.nextInt();
+                inputValido = true;
+            }
+            else{
+                System.out.println("Entrada invalida.Introduce otro numero");
+                sc.next();
+            }
+        }
         if (seleccion == 1) {
             System.out.println("Selecciona dificultad:");
             System.out.println();
@@ -79,8 +89,22 @@ public class Main {
             System.out.println("3. Difícil.");
             System.out.println();
 
-            seleccion = sc.nextInt();
-
+            inputValido = false;
+            while (!inputValido) {
+                if(sc.hasNextInt()) {
+                    seleccion = sc.nextInt();
+                    if(seleccion >= 1 && seleccion <= 3) {
+                        inputValido = true;
+                    }
+                    else{
+                        System.out.println("Escribe un numero entre 1 y 3");
+                    }
+                }
+                else {
+                    System.out.println("Entrada invalida.Introduce otro numero");
+                    sc.next();
+                }
+            }
             switch (seleccion) {
                 case 1 -> dificultad = 'F';
                 case 2 -> dificultad = 'M';
