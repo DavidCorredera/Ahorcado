@@ -87,6 +87,7 @@ public class Main {
                 System.out.println("Selecciona dificultad:");
                 System.out.println();
                 System.out.println("0. Volver al menú anterior.");
+
                 System.out.println("1. Fácil.");
                 System.out.println("2. Medio.");
                 System.out.println("3. Difícil.");
