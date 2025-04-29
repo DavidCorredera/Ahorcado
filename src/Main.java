@@ -82,34 +82,40 @@ public class Main {
             }
         }
         if (seleccion == 1) {
-            System.out.println("Selecciona dificultad:");
-            System.out.println();
-            System.out.println("1. Fácil.");
-            System.out.println("2. Medio.");
-            System.out.println("3. Difícil.");
-            System.out.println();
+            boolean volver = false;
+            do {
+                System.out.println("Selecciona dificultad:");
+                System.out.println();
+                System.out.println("0. Volver al menú anterior.");
+                System.out.println("1. Fácil.");
+                System.out.println("2. Medio.");
+                System.out.println("3. Difícil.");
+                System.out.println();
 
-            inputValido = false;
-            while (!inputValido) {
-                if(sc.hasNextInt()) {
-                    seleccion = sc.nextInt();
-                    if(seleccion >= 1 && seleccion <= 3) {
-                        inputValido = true;
-                    }
-                    else{
-                        System.out.println("Escribe un numero entre 1 y 3");
+                inputValido = false;
+                while (!inputValido) {
+                    if (sc.hasNextInt()) {
+                        seleccion = sc.nextInt();
+                        if (seleccion >= 1 && seleccion <= 3) {
+                            inputValido = true;
+                        } else {
+                            System.out.println("Escribe un numero entre 0 y 3");
+                        }
+                    } else {
+                        System.out.println("Entrada invalida.Introduce otro numero");
+                        sc.next();
                     }
                 }
-                else {
-                    System.out.println("Entrada invalida.Introduce otro numero");
-                    sc.next();
+                switch (seleccion) {
+                    case 0->{
+                        volver = true;
+                        inputValido = false;
+                    }
+                    case 1 -> dificultad = 'F';
+                    case 2 -> dificultad = 'M';
+                    case 3 -> dificultad = 'D';
                 }
-            }
-            switch (seleccion) {
-                case 1 -> dificultad = 'F';
-                case 2 -> dificultad = 'M';
-                case 3 -> dificultad = 'D';
-            }
+            }while(volver);
         } else {
             dificultad = getRandomDiff();
         }
